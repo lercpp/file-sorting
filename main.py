@@ -1,6 +1,7 @@
-from pathlib import *
+from pathlib import Path
+import shutil
 
-path = Path.home() / "test"
+path = Path("test")
 
 categories = {
     "Images": [".jpg",".jpeg",".png",".gif",".webp"],
@@ -16,7 +17,7 @@ def get_categoria(extension):
         if extension.lower() in extensions:
             return category
 
-        return "None"
+    return "Other"
 
 
 def organze():
@@ -26,7 +27,7 @@ def organze():
 
         category = get_categoria(file.suffix)
 
-        target_folder = folder / category
+        target_folder = path / category
         target_folder.mkdir(exist_ok=True)
         target = target_folder / file.name
         if target.exists():
